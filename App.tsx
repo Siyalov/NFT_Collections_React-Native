@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Header from "./components/Header";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { NFTUserCollection } from "./api/serverData";
 import { getPage } from "./api";
-import BodyImage from "./components/BodyImage";
 import NFTCollection from "./components/NFTCollection";
 
 export default function App() {
@@ -21,21 +19,23 @@ export default function App() {
   }, []);
 
   return (
-    <ScrollView style={stylesApp.container}>
-      {data ? (
-        data.map((el) => <NFTCollection key={el.id} collection={el} />)
-      ) : (
-        <Text>Loading...</Text>
-      )}
+    <SafeAreaView style={{backgroundColor: '#05071B'}}>
+      <ScrollView style={stylesApp.container}>
+        {data ? (
+          data.map((el) => <NFTCollection key={el.id} collection={el} />)
+        ) : (
+          <Text>Loading...</Text>
+        )}
 
-      <StatusBar style="auto" />
-    </ScrollView>
+        <StatusBar style="auto" />
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const stylesApp = StyleSheet.create({
   container: {
     backgroundColor: "#05071B", // #1E2032
-    height: '100%',
+    height: "100%",
   },
 });
