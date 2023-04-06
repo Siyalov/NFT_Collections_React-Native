@@ -15,13 +15,12 @@ import { NFTUserCollection } from "../api/serverData";
 import { useSwipeX } from "../hooks/useSwipe";
 import { Col, Grid, Row } from "react-native-easy-grid";
 import Button from "./Button";
+import Eth from '../assets/eth.svg';
 
 interface ComponentProps {
   collection: NFTUserCollection;
 }
 
-// TODO: eth icon
-// TODO: fix rounding bug
 // TODO: button
 // TODO: images ...
 
@@ -73,7 +72,8 @@ export default function NFTCollection({ collection }: ComponentProps) {
         <View style={styles.headerText}>
           <Text style={styles.creatorName}>{collection.creator_name}</Text>
           <Text style={styles.price}>
-            E {activeItem.price_eth}{" "}
+            <Eth />
+            {" "}{activeItem.price_eth}{" "}
             <Text style={styles.priceUSD}>(${activeItem.price_usd})</Text>
           </Text>
         </View>
