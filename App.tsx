@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 0,
     zIndex: 1,
+    overflow: 'hidden',
   },
   gradientText: {
     position: "absolute",
