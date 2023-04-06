@@ -4,25 +4,20 @@ import {
   StyleSheet,
   Image,
   Text,
-  ScrollView,
   Dimensions,
-  ImageBackground,
   TouchableOpacity,
   Animated,
   Linking,
 } from "react-native";
-import { NFTUserCollection } from "../api/serverData";
+import { NFTUserCollection, NFTUserCollectionItem } from "../api/serverData";
 import { useSwipeX } from "../hooks/useSwipe";
 import { Col, Grid, Row } from "react-native-easy-grid";
 import Button from "./Button";
-import Eth from '../assets/eth.svg';
+import Eth from "../assets/eth.svg";
 
 interface ComponentProps {
   collection: NFTUserCollection;
 }
-
-// TODO: button
-// TODO: images ...
 
 export default function NFTCollection({ collection }: ComponentProps) {
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -32,17 +27,19 @@ export default function NFTCollection({ collection }: ComponentProps) {
   const imagesCount = 4;
 
   function onSwipeRight() {
-    console.log("left");
     setActiveItemIndex(Math.max(0, activeItemIndex - 1));
   }
 
   function onSwipeLeft() {
-    console.log("right");
     setActiveItemIndex(Math.min(imagesCount, activeItemIndex + 1));
   }
 
   function onBrowseCollectionClick() {
     Linking.openURL(collection.collection_url);
+  }
+
+  function onImageClick(item: NFTUserCollectionItem) {
+    Linking.openURL(item.item_url);
   }
 
   useEffect(() => {
@@ -72,8 +69,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
         <View style={styles.headerText}>
           <Text style={styles.creatorName}>{collection.creator_name}</Text>
           <Text style={styles.price}>
-            <Eth />
-            {" "}{activeItem.price_eth}{" "}
+            <Eth /> {activeItem.price_eth}{" "}
             <Text style={styles.priceUSD}>(${activeItem.price_usd})</Text>
           </Text>
         </View>
@@ -94,13 +90,18 @@ export default function NFTCollection({ collection }: ComponentProps) {
           ]}
         >
           {collection.items.slice(0, 4).map((item, idx) => (
-            <Image
-              resizeMethod="scale"
-              resizeMode="stretch"
+            <TouchableOpacity
               style={styles.imagesImage}
+              onPress={() => onImageClick(item)}
               key={idx}
-              source={{ uri: item.image }}
-            />
+            >
+              <Image
+                resizeMethod="scale"
+                resizeMode="stretch"
+                style={{ width: "100%", height: "100%" }}
+                source={{ uri: item.image }}
+              />
+            </TouchableOpacity>
           ))}
           <View style={styles.imagesImage}>
             <View style={styles.imagesLastElement}>
@@ -114,7 +115,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
             <Grid>
               <Row>
                 {collection.items.slice(0, 2).map((item, idx) => (
-                  <Col>
+                  <Col key={idx}>
                     <Image
                       resizeMethod="scale"
                       resizeMode="stretch"
@@ -127,7 +128,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
               </Row>
               <Row>
                 {collection.items.slice(2, 4).map((item, idx) => (
-                  <Col>
+                  <Col key={idx}>
                     <Image
                       resizeMethod="scale"
                       resizeMode="stretch"
@@ -150,6 +151,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
                   onPress={() => {
                     setActiveItemIndex(idx);
                   }}
+                  key={idx}
                 >
                   <View
                     style={[
