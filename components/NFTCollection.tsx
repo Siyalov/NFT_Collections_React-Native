@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   StyleSheet,
-  Image,
+  // Image,
   Text,
   Dimensions,
   TouchableOpacity,
@@ -14,6 +14,7 @@ import { useSwipeX } from "../hooks/useSwipe";
 import { Col, Grid, Row } from "react-native-easy-grid";
 import Button from "./Button";
 import Eth from "../assets/eth.svg";
+import { Image } from "expo-image";
 
 interface ComponentProps {
   collection: NFTUserCollection;
@@ -96,8 +97,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
               key={idx}
             >
               <Image
-                resizeMethod="scale"
-                resizeMode="stretch"
+                contentFit="cover"
                 style={{ width: "100%", height: "100%" }}
                 source={{ uri: item.image }}
               />
@@ -117,8 +117,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
                 {collection.items.slice(0, 2).map((item, idx) => (
                   <Col key={idx}>
                     <Image
-                      resizeMethod="scale"
-                      resizeMode="stretch"
+                      contentFit="cover"
                       style={[styles.imagesImage, { width: "100%" }]}
                       key={idx}
                       source={{ uri: item.image }}
@@ -130,8 +129,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
                 {collection.items.slice(2, 4).map((item, idx) => (
                   <Col key={idx}>
                     <Image
-                      resizeMethod="scale"
-                      resizeMode="stretch"
+                      contentFit="cover"
                       style={[styles.imagesImage, { width: "100%" }]}
                       key={idx}
                       source={{ uri: item.image }}
