@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     width: "100%",
     height: 12,
-    marginBottom: 12,
+    marginBottom: 18,
     bottom: 0,
     zIndex: 2,
     alignItems: "center",
@@ -260,7 +260,7 @@ const styles = StyleSheet.create({
     borderColor: "white",
     height: 12,
     width: 12,
-    marginHorizontal: 6,
+    margin: 6,
   },
   description: {
     paddingHorizontal: 12,
