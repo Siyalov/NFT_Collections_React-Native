@@ -2,6 +2,7 @@
   "expo": {
     "name": "NFT_Collections_React-Native",
     "slug": "NFT_Collections_React-Native",
+    "owner": "ilyasiyalov",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,10 +22,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ilyasiyalov.NFT_Collections_ReactNative"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4928a5a0-168d-409d-a7e3-051f21c2cf0f"
+      }
     }
   }
 }
