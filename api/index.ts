@@ -2,7 +2,7 @@ import { NFTUserCollection } from "./serverData";
 
 const serverURL = "https://631b5df3fae3df4dcffcf52e.mockapi.io/api/v1/items";
 
-export async function getPage(pageNumber: number = 1, pageSize: number = 10) {
+export async function getPage(pageNumber: number = 1, pageSize: number = 10): Promise<NFTUserCollection[] | null> {
   const url = `${serverURL}?page=${pageNumber}&limit=${pageSize}`;
   // const url = new URL(serverURL);
   // url.searchParams.set("page", pageNumber.toString());
