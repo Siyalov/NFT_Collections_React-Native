@@ -93,7 +93,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
           {collection.items.slice(0, 4).map((item, idx) => (
             <TouchableOpacity
               style={styles.imagesImage}
-              onPress={() => onImageClick(item)}
+              // onPress={() => onImageClick(item)}
               key={idx}
             >
               <Image

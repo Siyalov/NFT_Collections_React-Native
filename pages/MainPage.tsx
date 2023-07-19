@@ -10,8 +10,19 @@ import { NFTUserCollection } from "../api/serverData";
 import { getPage } from "../api";
 import NFTCollection from "../components/NFTCollection";
 import { LinearGradient } from "expo-linear-gradient";
+import { loadNFTCollectionsByPage, store, StoreState } from "../store/types";
+import { useDispatch, useSelector } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk'
 
 export default function MainPage() {
+  const dispatch = useDispatch();
+  // const collections = useSelector((state: StoreState) => state.nftCollections);
+
+  useEffect(() => {
+    dispatch(loadNFTCollectionsByPage(1) as any);
+    
+  }, [dispatch]);
+
   const [data, setData] = useState<Array<NFTUserCollection> | null>(null);
   const pageSize = 10;
   const [lastLoadedPage, setLastLoadedPage] = useState(0);
@@ -28,6 +39,7 @@ export default function MainPage() {
     }
 
     if (data) {
+      console.log(data)
       setData([].concat(data, loadedData));
     } else {
       setData(loadedData);

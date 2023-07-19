@@ -1,0 +1,64 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Users\HONOR 2021\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js android
+
+PATH: 
+  C:\Program Files\Eclipse Adoptium\jdk-11.0.17.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-8.0.352.8-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs\;C:\Android\platform-tools;C:\Android\emulator;C:\Android\gradle-7.5.1\bin;C:\Users\HONOR 2021\AppData\Local\Microsoft\WindowsApps;C:\Users\HONOR 2021\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\HONOR 2021\AppData\Local\GitHubDesktop\bin;C:\Users\HONOR 2021\AppData\Roaming\npm;
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  18.12.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  SyntaxError: C:\Users\HONOR 2021\Documents\GitHub\REACT NATIVE\NFT_Collections_React-Native\package.json: Unexpected token 
+   in JSON at position 290
+      at JSON.parse (<anonymous>)
+      at C:\Users\HONOR 2021\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:1629:59
+      at Generator.next (<anonymous>)
+      at step (C:\Users\HONOR 2021\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:310:30)
+      at C:\Users\HONOR 2021\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "nft_collections_react-native",
+    "version": "1.0.0",
+    "main": "node_modules/expo/AppEntry.js",
+    "scripts": {
+      "start": "expo start",
+      "android": "expo start --android",
+      "ios": "expo start --ios",
+      "web": "expo start --web"
+    },
+    "dependencies": {
+      "@reduxjs/
+      ": "^1.9.5",
+      "expo": "~48.0.10",
+      "expo-image": "~1.0.1",
+      "expo-linear-gradient": "^12.1.2",
+      "expo-status-bar": "~1.4.4",
+      "react": "18.2.0",
+      "react-native": "0.71.8",
+      "react-native-easy-grid": "^0.2.2",
+      "react-native-svg": "13.4.0",
+      "react-native-svg-transformer": "^1.0.0",
+      "react-redux": "^8.0.5",
+      "redux": "^4.2.1",
+      "redux-thunk": "^2.4.2",
+      "typescript": "^4.9.4"
+    },
+    "devDependencies": {
+      "@babel/core": "^7.20.0",
+      "@types/react": "^18.0.33"
+    },
+    "private": true
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

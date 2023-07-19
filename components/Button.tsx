@@ -8,7 +8,9 @@ interface ComponentProps {
 }
 
 export default function Button({ children, style, onPress }: ComponentProps) {
-  return <TouchableOpacity style={[styles.button, style]} onPress={onPress}>
+  return <TouchableOpacity style={[styles.button, style]} 
+  // onPress={onPress}
+  >
     {children}
   </TouchableOpacity>
 }
