@@ -10,7 +10,7 @@ import { NFTUserCollection } from "../api/serverData";
 import thunk, { ThunkAction } from "redux-thunk";
 import * as api from '../api';
 
-interface NFTCollectionsState {
+export interface NFTCollectionsState {
   collections: Array<NFTUserCollection>;
   isLoading: boolean;
   error: string | null;

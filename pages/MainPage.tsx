@@ -10,20 +10,29 @@ import { NFTUserCollection } from "../api/serverData";
 import { getPage } from "../api";
 import NFTCollection from "../components/NFTCollection";
 import { LinearGradient } from "expo-linear-gradient";
-import { loadNFTCollectionsByPage, store, StoreState } from "../store/types";
-import { useDispatch, useSelector } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk'
+import {
+  loadNFTCollectionsByPage,
+  NFTCollectionsState,
+  store,
+  StoreState,
+} from "../store/types";
+import { useDispatch, useSelector } from "react-redux";
+import { ThunkDispatch } from "redux-thunk";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
+import { getNFTCollection } from "../store/slices/NFTSlice";
 
 export default function MainPage() {
+  const appDispatch = useAppDispatch();
   const dispatch = useDispatch();
   // const collections = useSelector((state: StoreState) => state.nftCollections);
+  const { collections, isLoading, error } = useAppSelector<NFTCollectionsState>(
+    (state) => state.nft
+  );
 
   useEffect(() => {
-    dispatch(loadNFTCollectionsByPage(1) as any);
-    
+    appDispatch(getNFTCollection(1));
   }, [dispatch]);
 
-  const [data, setData] = useState<Array<NFTUserCollection> | null>(null);
   const pageSize = 10;
   const [lastLoadedPage, setLastLoadedPage] = useState(0);
   const scrollMessage = "Scroll for next gem";
@@ -32,17 +41,10 @@ export default function MainPage() {
   async function loadAndAddData(page = 1) {
     const prevPage = lastLoadedPage;
     setLastLoadedPage(page);
-    const loadedData = await getPage(page, pageSize);
+    const loadedData = await getNFTCollection(page);
     if (!loadedData) {
       setLastLoadedPage(prevPage);
       return;
-    }
-
-    if (data) {
-      console.log(data)
-      setData([].concat(data, loadedData));
-    } else {
-      setData(loadedData);
     }
   }
 
@@ -73,7 +75,7 @@ export default function MainPage() {
       const absDy = Math.abs(dy);
       if (absDy >= 50) {
         const nextIndex = currentIndex - directionMultiplier;
-        if (data && nextIndex >= 0 && nextIndex < data.length) {
+        if (collections && nextIndex >= 0 && nextIndex < collections.length) {
           setCurrentIndex(nextIndex);
         }
       }
@@ -87,8 +89,8 @@ export default function MainPage() {
   }, []);
 
   useEffect(() => {
-    if (data && data.length - currentIndex < 4) {
-      const newPage = Math.ceil(data.length / pageSize) + 1;
+    if (collections && collections.length - currentIndex < 4) {
+      const newPage = Math.ceil(collections.length / pageSize) + 1;
       if (newPage > lastLoadedPage) {
         loadAndAddData(newPage);
       }
@@ -110,13 +112,13 @@ export default function MainPage() {
       </Animated.View>
 
       <Animated.View style={{ bottom: bottomGradientHeight }}>
-        {data ? (
+        {!isLoading && collections.length ? (
           <NFTCollection
-            key={data[currentIndex].id}
-            collection={data[currentIndex]}
+            key={collections[currentIndex].id}
+            collection={collections[currentIndex]}
           />
         ) : (
-          <Text>Loading...</Text>
+          <Text style={[styles.preloaderText]}>Loading...</Text>
         )}
       </Animated.View>
 
@@ -131,7 +133,7 @@ export default function MainPage() {
           style={{ height: "100%" }}
         />
         <Text style={[styles.gradientText, { top: 0 }]}>
-          {currentIndex === data?.length - 1
+          {currentIndex === collections?.length - 1
             ? scrollMessageEmpty
             : scrollMessage}
         </Text>
@@ -160,4 +162,8 @@ const styles = StyleSheet.create({
     width: "100%",
     padding: 18,
   },
+  preloaderText: {
+  color:"white",
+  fontSize: 30,
+  }
 });
