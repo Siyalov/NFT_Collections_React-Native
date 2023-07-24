@@ -6,6 +6,7 @@
 * [React Native](https://reactnative.dev/)
 * [Expo](https://expo.dev)
 * [TypeScript](https://www.typescriptlang.org/)
+* [Redux](https://redux-toolkit.js.org/)
 
 ## How to start:
 
