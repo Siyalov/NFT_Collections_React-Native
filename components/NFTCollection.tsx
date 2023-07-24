@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from "react";
 import {
   View,
   StyleSheet,
-  // Image,
   Text,
   Dimensions,
   TouchableOpacity,
@@ -45,6 +44,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
 
   useEffect(() => {
     setActiveItem(collection.items[activeItemIndex] || activeItem);
+
     Animated.timing(imagesMarginLeft.current, {
       toValue: activeItemIndex * -windowDimensions.width,
       duration: 250,
@@ -93,7 +93,7 @@ export default function NFTCollection({ collection }: ComponentProps) {
           {collection.items.slice(0, 4).map((item, idx) => (
             <TouchableOpacity
               style={styles.imagesImage}
-              // onPress={() => onImageClick(item)}
+              onPress={() => onImageClick(item)}
               key={idx}
             >
               <Image
@@ -182,13 +182,11 @@ export default function NFTCollection({ collection }: ComponentProps) {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    // backgroundColor: '#fa0',
   },
   header: {
     paddingHorizontal: 12,
     paddingVertical: 8,
     flexDirection: "row",
-    // alignItems: 'center',
   },
   avatar: {
     overflow: "hidden",

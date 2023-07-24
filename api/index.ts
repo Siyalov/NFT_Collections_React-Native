@@ -4,9 +4,6 @@ const serverURL = "https://631b5df3fae3df4dcffcf52e.mockapi.io/api/v1/items";
 
 export async function getPage(pageNumber: number = 1, pageSize: number = 10): Promise<NFTUserCollection[] | null> {
   const url = `${serverURL}?page=${pageNumber}&limit=${pageSize}`;
-  // const url = new URL(serverURL);
-  // url.searchParams.set("page", pageNumber.toString());
-  // url.searchParams.set("limit", pageSize.toString());
 
   const response = await fetch(url).catch((e: Error) => e);
 
@@ -20,7 +17,7 @@ export async function getPage(pageNumber: number = 1, pageSize: number = 10): Pr
         return data;
       } else { // server says that response NOT JSON
         const data = await response.text();
-        // TODO: add errors handler
+        
         // throw new Error('Fetch error: ' + data);
         console.error("Fetch error:", "Unknown data:", data);
         return null;

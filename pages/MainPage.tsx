@@ -6,32 +6,23 @@ import {
   Text,
   PanResponder,
 } from "react-native";
-import { NFTUserCollection } from "../api/serverData";
-import { getPage } from "../api";
 import NFTCollection from "../components/NFTCollection";
 import { LinearGradient } from "expo-linear-gradient";
 import {
-  loadNFTCollectionsByPage,
   NFTCollectionsState,
-  store,
-  StoreState,
 } from "../store/types";
-import { useDispatch, useSelector } from "react-redux";
-import { ThunkDispatch } from "redux-thunk";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { getNFTCollection } from "../store/slices/NFTSlice";
 
 export default function MainPage() {
   const appDispatch = useAppDispatch();
-  const dispatch = useDispatch();
-  // const collections = useSelector((state: StoreState) => state.nftCollections);
   const { collections, isLoading, error } = useAppSelector<NFTCollectionsState>(
     (state) => state.nft
   );
 
   useEffect(() => {
     appDispatch(getNFTCollection(1));
-  }, [dispatch]);
+  }, [appDispatch]);
 
   const pageSize = 10;
   const [lastLoadedPage, setLastLoadedPage] = useState(0);

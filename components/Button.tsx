@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ViewStyle, StyleProp, Touchable, TouchableOpacity } from 'react-native';
+import { StyleSheet, ViewStyle, StyleProp, TouchableOpacity } from 'react-native';
 
 interface ComponentProps {
   children: React.ReactNode;
@@ -9,7 +9,7 @@ interface ComponentProps {
 
 export default function Button({ children, style, onPress }: ComponentProps) {
   return <TouchableOpacity style={[styles.button, style]} 
-  // onPress={onPress}
+  onPress={onPress}
   >
     {children}
   </TouchableOpacity>
